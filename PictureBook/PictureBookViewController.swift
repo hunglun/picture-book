@@ -11,13 +11,15 @@ import UIKit
 
 
 
-var pictureStoryContent = PictureStoryContent(content:"Once upon a time there was a mother Sow who lived in an old barn with her three little Pigs. When the little pigs were old enough to be on their own, she sent them out to seek their fortune.")
+//var pictureStoryContent = PictureStoryContent(content:"Once upon a time there was a mother Sow who lived in an old barn with her three little Pigs. When the little pigs were old enough to be on their own, she sent them out to seek their fortune.")
 
 class PictureBookViewController: UIViewController, UITextFieldDelegate {
     var storyContentIndex : Int!
+    var pictureStoryContent : PictureStoryContent!
     @IBOutlet var textField: UITextField!
     @IBOutlet var webView: UIWebView!
     @IBOutlet var toolbar: UIToolbar!
+
 
     let textAttributes = [
         // black outline
@@ -29,9 +31,9 @@ class PictureBookViewController: UIViewController, UITextFieldDelegate {
     
     func selectNextPage(){
         let nextController = self.storyboard!.instantiateViewControllerWithIdentifier("PictureBookViewController") as! PictureBookViewController
-
+        nextController.pictureStoryContent = self.pictureStoryContent
         nextController.storyContentIndex = self.storyContentIndex + 1
-        navigationController?.pushViewController(nextController, animated: true)
+        navigationController?.pushViewController(nextController, animated: false)
     }
     
     func startOver(){

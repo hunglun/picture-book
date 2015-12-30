@@ -5,6 +5,34 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
+        <!--StoryInputView-->
+        <scene sceneID="UIe-Lp-Qgf">
+            <objects>
+                <viewController title="StoryInputView" id="IBn-dS-PJK" customClass="StoryInputViewController" customModule="PictureBook" customModuleProvider="target" sceneMemberID="viewController">
+                    <textView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" id="0sM-oK-owF">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <string key="text">The first little pig that went off met a Man with a bundle of straw, and said to him, "Please, Man, give me that straw to build me a house"; which the Man did, and the little Pig built a house with it. Presently came along a Wolf, and knocked at the door, and said, "Little Pig, little Pig, let me come in."
+To which the Pig answered, "No, not by the hair of my chinny chin chin."</string>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
+                    <navigationItem key="navigationItem" id="C2m-Ue-Oc9">
+                        <barButtonItem key="rightBarButtonItem" title="Generate Picture Book" id="ZAl-E7-pPU">
+                            <connections>
+                                <segue destination="BYZ-38-t0r" kind="push" id="4gi-xS-ZRM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="textView" destination="0sM-oK-owF" id="3xw-m3-Few"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yg1-OS-vfA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="302" y="-244"/>
+        </scene>
         <!--Picture Book-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -82,7 +110,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="kpq-fy-PRx"/>
+                        <segue destination="IBn-dS-PJK" kind="relationship" relationship="rootViewController" id="0Kj-Wg-2aV"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XVt-6C-i36" userLabel="First Responder" sceneMemberID="firstResponder"/>

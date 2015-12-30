@@ -30,9 +30,13 @@ struct PictureStoryContent {
                 
             }else {
                 listOfSublists.append(sublist)
-                sublist = []
-                count = 0
+                sublist = [word]
+                count = word.characters.count
             }
+        }
+
+        if count > 0 {
+            listOfSublists.append(sublist)
         }
         return listOfSublists
 
