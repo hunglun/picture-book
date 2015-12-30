@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="uFV-Mr-GeZ">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Picture Book-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PictureBook" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PictureBookViewController" id="BYZ-38-t0r" customClass="PictureBookViewController" customModule="PictureBook" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -17,41 +17,52 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k08-iJ-g6u">
-                                <rect key="frame" x="0.0" y="28" width="600" height="484"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="484" id="aBb-17-9t5"/>
-                                </constraints>
-                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
-                            </webView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v2P-sD-UAJ">
-                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="8Gk-MA-Fzp"/>
-                                </constraints>
-                                <items/>
-                            </toolbar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Enter a word here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OHa-pK-0kQ">
-                                <rect key="frame" x="0.0" y="510" width="600" height="46"/>
+                                <rect key="frame" x="0.0" y="434" width="600" height="122"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textField>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v2P-sD-UAJ">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="rlj-Xx-Rsp"/>
+                                </constraints>
+                                <items/>
+                            </toolbar>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A8G-qR-988">
+                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" id="NUl-n2-xXG"/>
+                                </constraints>
+                            </navigationBar>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k08-iJ-g6u">
+                                <rect key="frame" x="0.0" y="64" width="600" height="371"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="371" id="SGe-3j-4Np"/>
+                                </constraints>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="v2P-sD-UAJ" firstAttribute="top" secondItem="OHa-pK-0kQ" secondAttribute="bottom" id="017-Da-YiR"/>
-                            <constraint firstItem="v2P-sD-UAJ" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="2uV-v6-Brv"/>
-                            <constraint firstItem="OHa-pK-0kQ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="490" id="64b-lr-d2l"/>
-                            <constraint firstItem="v2P-sD-UAJ" firstAttribute="leading" secondItem="OHa-pK-0kQ" secondAttribute="leading" id="GVx-Lz-2EX"/>
-                            <constraint firstItem="OHa-pK-0kQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Hmz-1h-RBU"/>
-                            <constraint firstItem="v2P-sD-UAJ" firstAttribute="trailing" secondItem="OHa-pK-0kQ" secondAttribute="trailing" id="Lpz-Tt-oe1"/>
-                            <constraint firstItem="v2P-sD-UAJ" firstAttribute="leading" secondItem="k08-iJ-g6u" secondAttribute="leading" id="Z42-Uu-txd"/>
-                            <constraint firstAttribute="trailing" secondItem="OHa-pK-0kQ" secondAttribute="trailing" id="ZtR-h1-ujI"/>
-                            <constraint firstItem="k08-iJ-g6u" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="fZv-ui-R9J"/>
-                            <constraint firstItem="v2P-sD-UAJ" firstAttribute="trailing" secondItem="k08-iJ-g6u" secondAttribute="trailing" id="pVx-hG-qtv"/>
+                            <constraint firstItem="OHa-pK-0kQ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="370" id="5Yk-8F-lT1"/>
+                            <constraint firstItem="v2P-sD-UAJ" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="5Zd-8n-Xg4"/>
+                            <constraint firstAttribute="trailing" secondItem="k08-iJ-g6u" secondAttribute="trailing" id="APQ-fP-Zza"/>
+                            <constraint firstItem="k08-iJ-g6u" firstAttribute="leading" secondItem="OHa-pK-0kQ" secondAttribute="leading" id="JHN-dG-Xj4"/>
+                            <constraint firstItem="A8G-qR-988" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Mog-ER-d7w"/>
+                            <constraint firstItem="v2P-sD-UAJ" firstAttribute="leading" secondItem="OHa-pK-0kQ" secondAttribute="leading" id="OHf-my-Rto"/>
+                            <constraint firstItem="v2P-sD-UAJ" firstAttribute="trailing" secondItem="OHa-pK-0kQ" secondAttribute="trailing" id="Tcz-B3-M8j"/>
+                            <constraint firstItem="A8G-qR-988" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="ZfF-wM-wes"/>
+                            <constraint firstItem="k08-iJ-g6u" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="gVK-0k-aVQ"/>
+                            <constraint firstItem="v2P-sD-UAJ" firstAttribute="top" secondItem="OHa-pK-0kQ" secondAttribute="bottom" id="ofK-Wc-4vm"/>
+                            <constraint firstItem="k08-iJ-g6u" firstAttribute="leading" secondItem="A8G-qR-988" secondAttribute="leading" id="wrj-OC-dge"/>
+                            <constraint firstItem="k08-iJ-g6u" firstAttribute="trailing" secondItem="OHa-pK-0kQ" secondAttribute="trailing" id="y4O-ho-CWn"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Picture Book" id="ahG-HW-5yz">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="IdU-hY-OiR"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="textField" destination="OHa-pK-0kQ" id="neN-c9-GXL"/>
                         <outlet property="toolbar" destination="v2P-sD-UAJ" id="3m4-70-AjA"/>
@@ -60,7 +71,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="305" y="387"/>
+            <point key="canvasLocation" x="610" y="204"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="JNZ-J1-fMd">
+            <objects>
+                <navigationController id="uFV-Mr-GeZ" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="YRo-CY-6st">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="kpq-fy-PRx"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XVt-6C-i36" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-123" y="210"/>
         </scene>
     </scenes>
 </document>

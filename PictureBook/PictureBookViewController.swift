@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  PictureBookViewController.swift
 //  PictureBook
 //
 //  Created by hunglun on 12/30/15.
@@ -8,14 +8,17 @@
 
 import UIKit
  
-// restrict 30 letters per view.
-var storyContent = ["There", "is", "an","old" ,"donkey", "in" ,"a" ,"far", "away" ,"farm", "village"]
-    //He is too old to work. His master kicks him out."
 
-class ViewController: UIViewController, UITextFieldDelegate {
 
+
+var pictureStoryContent = PictureStoryContent(content:"Once upon a time there was a mother Sow who lived in an old barn with her three little Pigs. When the little pigs were old enough to be on their own, she sent them out to seek their fortune.")
+
+class PictureBookViewController: UIViewController, UITextFieldDelegate {
+    var storyContentIndex : Int!
     @IBOutlet var textField: UITextField!
     @IBOutlet var webView: UIWebView!
+    @IBOutlet var toolbar: UIToolbar!
+
     let textAttributes = [
         // black outline
         NSStrokeColorAttributeName : UIColor(white: 0, alpha: 1),
@@ -24,11 +27,32 @@ class ViewController: UIViewController, UITextFieldDelegate {
         NSStrokeWidthAttributeName : -3
     ]
     
+    func selectNextPage(){
+        let nextController = self.storyboard!.instantiateViewControllerWithIdentifier("PictureBookViewController") as! PictureBookViewController
 
-    @IBOutlet var toolbar: UIToolbar!
+        nextController.storyContentIndex = self.storyContentIndex + 1
+        navigationController?.pushViewController(nextController, animated: true)
+    }
+    
+    func startOver(){
+        navigationController?.popToRootViewControllerAnimated(true)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+
+        if storyContentIndex == nil {
+            storyContentIndex = 0
+        }
+        // Create navigation button : start over and next page
+        if storyContentIndex < pictureStoryContent.contentToListOfSublists().count - 1 {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .Plain, target: self, action: "selectNextPage")
+        }else {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Start Over", style: .Plain, target: self, action: "startOver")
+            
+        }
+
     }
     
     func imageSearch (sender : NSObject) {
@@ -43,17 +67,18 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+
+       
+        
         textField.delegate = self
         textField.defaultTextAttributes = textAttributes
         textField.textAlignment = .Center
         textField.clearButtonMode = .WhileEditing
-        
-        //TODO: create bar button on toolbar
-        for word in storyContent {
+    
+        // Create bar button on toolbar
+        for word in pictureStoryContent.contentToListOfSublists()[storyContentIndex] {
             toolbar.items?.append(UIBarButtonItem(title: word, style: .Plain, target: self, action: "imageSearch:" ))
         }
-        
-
     }
 
     
