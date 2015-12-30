@@ -18,25 +18,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k08-iJ-g6u">
-                                <rect key="frame" x="0.0" y="28" width="600" height="389"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="461"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </webView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OHa-pK-0kQ">
-                                <rect key="frame" x="0.0" y="491" width="600" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Enter a word here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OHa-pK-0kQ">
+                                <rect key="frame" x="0.0" y="491" width="600" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="Hub-bD-3mi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="k08-iJ-g6u" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="32M-C7-T0g"/>
-                            <constraint firstItem="OHa-pK-0kQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="8Kf-Hq-hNK"/>
-                            <constraint firstAttribute="trailing" secondItem="OHa-pK-0kQ" secondAttribute="trailing" id="9Ke-zL-SZv"/>
-                            <constraint firstItem="k08-iJ-g6u" firstAttribute="leading" secondItem="OHa-pK-0kQ" secondAttribute="leading" id="E4P-Ki-tZo"/>
-                            <constraint firstItem="OHa-pK-0kQ" firstAttribute="trailing" secondItem="k08-iJ-g6u" secondAttribute="trailing" id="FrN-6N-Bsk"/>
-                            <constraint firstItem="OHa-pK-0kQ" firstAttribute="top" secondItem="k08-iJ-g6u" secondAttribute="bottom" constant="74" id="Nm7-77-clb"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="OHa-pK-0kQ" secondAttribute="bottom" constant="79" id="VOW-FN-Xfz"/>
+                            <constraint firstItem="OHa-pK-0kQ" firstAttribute="trailing" secondItem="k08-iJ-g6u" secondAttribute="trailing" id="PNO-4i-XQU"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="OHa-pK-0kQ" secondAttribute="bottom" constant="29" id="RcG-m3-dJt"/>
+                            <constraint firstItem="k08-iJ-g6u" firstAttribute="leading" secondItem="OHa-pK-0kQ" secondAttribute="leading" id="Xng-M3-vD7"/>
+                            <constraint firstItem="k08-iJ-g6u" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="aWS-gx-IIX"/>
+                            <constraint firstAttribute="trailing" secondItem="OHa-pK-0kQ" secondAttribute="trailing" id="adx-07-NDX"/>
+                            <constraint firstItem="OHa-pK-0kQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="f6g-Ob-NA8"/>
+                            <constraint firstItem="OHa-pK-0kQ" firstAttribute="top" secondItem="k08-iJ-g6u" secondAttribute="bottom" constant="2" id="tWh-qu-9Gg"/>
                         </constraints>
                     </view>
                     <connections>
