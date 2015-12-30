@@ -7,6 +7,10 @@
 //
 
 import UIKit
+ 
+// restrict 30 letters per view.
+var storyContent = ["There", "is", "an","old" ,"donkey", "in" ,"a" ,"far", "away" ,"farm", "village"]
+    //He is too old to work. His master kicks him out."
 
 class ViewController: UIViewController, UITextFieldDelegate {
 
@@ -21,21 +25,34 @@ class ViewController: UIViewController, UITextFieldDelegate {
     ]
     
 
+    @IBOutlet var toolbar: UIToolbar!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
     
+    func imageSearch (sender : NSObject) {
+        if let sender = sender as? UIBarButtonItem where sender.title != nil {
+            let urlString = "https://www.google.com/search?q=\(sender.title!)"
+            if let url = NSURL (string: urlString) {
+                let requestObj = NSURLRequest(URL: url)
+                webView.loadRequest(requestObj)
+            }
+        }
+    }
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         textField.delegate = self
         textField.defaultTextAttributes = textAttributes
         textField.textAlignment = .Center
         textField.clearButtonMode = .WhileEditing
-
-        var frameRect = textField.frame;
-        frameRect.size.height +=  30
-        textField.frame = frameRect
+        
+        //TODO: create bar button on toolbar
+        for word in storyContent {
+            toolbar.items?.append(UIBarButtonItem(title: word, style: .Plain, target: self, action: "imageSearch:" ))
+        }
+        
 
     }
 

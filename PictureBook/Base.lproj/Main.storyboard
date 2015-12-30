@@ -18,32 +18,43 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k08-iJ-g6u">
-                                <rect key="frame" x="0.0" y="28" width="600" height="461"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="484"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="484" id="aBb-17-9t5"/>
+                                </constraints>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </webView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Enter a word here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OHa-pK-0kQ">
-                                <rect key="frame" x="0.0" y="491" width="600" height="80"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v2P-sD-UAJ">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="Hub-bD-3mi"/>
+                                    <constraint firstAttribute="height" constant="44" id="8Gk-MA-Fzp"/>
                                 </constraints>
+                                <items/>
+                            </toolbar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Enter a word here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OHa-pK-0kQ">
+                                <rect key="frame" x="0.0" y="510" width="600" height="46"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="OHa-pK-0kQ" firstAttribute="trailing" secondItem="k08-iJ-g6u" secondAttribute="trailing" id="PNO-4i-XQU"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="OHa-pK-0kQ" secondAttribute="bottom" constant="29" id="RcG-m3-dJt"/>
-                            <constraint firstItem="k08-iJ-g6u" firstAttribute="leading" secondItem="OHa-pK-0kQ" secondAttribute="leading" id="Xng-M3-vD7"/>
-                            <constraint firstItem="k08-iJ-g6u" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="aWS-gx-IIX"/>
-                            <constraint firstAttribute="trailing" secondItem="OHa-pK-0kQ" secondAttribute="trailing" id="adx-07-NDX"/>
-                            <constraint firstItem="OHa-pK-0kQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="f6g-Ob-NA8"/>
-                            <constraint firstItem="OHa-pK-0kQ" firstAttribute="top" secondItem="k08-iJ-g6u" secondAttribute="bottom" constant="2" id="tWh-qu-9Gg"/>
+                            <constraint firstItem="v2P-sD-UAJ" firstAttribute="top" secondItem="OHa-pK-0kQ" secondAttribute="bottom" id="017-Da-YiR"/>
+                            <constraint firstItem="v2P-sD-UAJ" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="2uV-v6-Brv"/>
+                            <constraint firstItem="OHa-pK-0kQ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="490" id="64b-lr-d2l"/>
+                            <constraint firstItem="v2P-sD-UAJ" firstAttribute="leading" secondItem="OHa-pK-0kQ" secondAttribute="leading" id="GVx-Lz-2EX"/>
+                            <constraint firstItem="OHa-pK-0kQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Hmz-1h-RBU"/>
+                            <constraint firstItem="v2P-sD-UAJ" firstAttribute="trailing" secondItem="OHa-pK-0kQ" secondAttribute="trailing" id="Lpz-Tt-oe1"/>
+                            <constraint firstItem="v2P-sD-UAJ" firstAttribute="leading" secondItem="k08-iJ-g6u" secondAttribute="leading" id="Z42-Uu-txd"/>
+                            <constraint firstAttribute="trailing" secondItem="OHa-pK-0kQ" secondAttribute="trailing" id="ZtR-h1-ujI"/>
+                            <constraint firstItem="k08-iJ-g6u" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="fZv-ui-R9J"/>
+                            <constraint firstItem="v2P-sD-UAJ" firstAttribute="trailing" secondItem="k08-iJ-g6u" secondAttribute="trailing" id="pVx-hG-qtv"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="textField" destination="OHa-pK-0kQ" id="neN-c9-GXL"/>
+                        <outlet property="toolbar" destination="v2P-sD-UAJ" id="3m4-70-AjA"/>
                         <outlet property="webView" destination="k08-iJ-g6u" id="vIv-DP-BfJ"/>
                     </connections>
                 </viewController>
