@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PictureBook" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +16,37 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k08-iJ-g6u">
+                                <rect key="frame" x="0.0" y="28" width="600" height="389"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                            </webView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OHa-pK-0kQ">
+                                <rect key="frame" x="0.0" y="491" width="600" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="k08-iJ-g6u" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="32M-C7-T0g"/>
+                            <constraint firstItem="OHa-pK-0kQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="8Kf-Hq-hNK"/>
+                            <constraint firstAttribute="trailing" secondItem="OHa-pK-0kQ" secondAttribute="trailing" id="9Ke-zL-SZv"/>
+                            <constraint firstItem="k08-iJ-g6u" firstAttribute="leading" secondItem="OHa-pK-0kQ" secondAttribute="leading" id="E4P-Ki-tZo"/>
+                            <constraint firstItem="OHa-pK-0kQ" firstAttribute="trailing" secondItem="k08-iJ-g6u" secondAttribute="trailing" id="FrN-6N-Bsk"/>
+                            <constraint firstItem="OHa-pK-0kQ" firstAttribute="top" secondItem="k08-iJ-g6u" secondAttribute="bottom" constant="74" id="Nm7-77-clb"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="OHa-pK-0kQ" secondAttribute="bottom" constant="79" id="VOW-FN-Xfz"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="textField" destination="OHa-pK-0kQ" id="neN-c9-GXL"/>
+                        <outlet property="webView" destination="k08-iJ-g6u" id="vIv-DP-BfJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="305" y="387"/>
         </scene>
     </scenes>
 </document>
