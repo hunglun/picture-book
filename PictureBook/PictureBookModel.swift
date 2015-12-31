@@ -7,13 +7,16 @@
 //
 
 import Foundation
+import UIKit
 
 struct PictureStoryContent {
+
     var content : String
     init(content: String){
         self.content=content.stringByReplacingOccurrencesOfString("\n", withString: " ")
     }
     func contentToListOfSublists () -> [[String]]{
+        let numberOfDisplayedLetters = UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation) ? 56 : 28
         if content == "" {
             return []
         }
@@ -24,8 +27,8 @@ struct PictureStoryContent {
         var count = 0
         for word in listsOfWords {
             count += word.characters.count
-            // restrict 28 letters per view.
-            if count < 28 {
+
+            if count < numberOfDisplayedLetters {
                 sublist.append(word)
                 
             }else {

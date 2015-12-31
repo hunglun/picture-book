@@ -48,12 +48,10 @@ class PictureBookViewController: UIViewController, UITextFieldDelegate {
             storyContentIndex = 0
         }
         // Create navigation button : start over and next page
-        if storyContentIndex < pictureStoryContent.contentToListOfSublists().count - 1 {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .Plain, target: self, action: "selectNextPage")
-        }else {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Start Over", style: .Plain, target: self, action: "startOver")
-            nextButton.enabled = false
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Start Over", style: .Plain, target: self, action: "startOver")
 
+        if storyContentIndex >= pictureStoryContent.contentToListOfSublists().count - 1 {
+            nextButton.enabled = false
         }
 
     }
@@ -125,6 +123,7 @@ class PictureBookViewController: UIViewController, UITextFieldDelegate {
         return keyboardSize.CGRectValue().height
     }
     
+    
     func keyboardWillHide(notification : NSNotification){
             view.frame.origin.y += getKeyboardHeight(notification)
     }
@@ -134,15 +133,28 @@ class PictureBookViewController: UIViewController, UITextFieldDelegate {
             view.frame.origin.y -= getKeyboardHeight(notification)
     }
     
+    func deviceWillRotate(notification : NSNotification){
+        // Create bar button on toolbar
+        toolbar.items?.removeAll()
+        for word in pictureStoryContent.contentToListOfSublists()[storyContentIndex] {
+            toolbar.items?.append(UIBarButtonItem(title: word, style: .Plain, target: self, action: "imageSearch:" ))
+        }
+
+    }
+    
     func subscribeToKeyboardNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "deviceWillRotate:", name: UIDeviceOrientationDidChangeNotification, object: nil)
+        
     }
     
     
     func unsubscribeToKeyboardNotifications() {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIDeviceOrientationDidChangeNotification, object: nil)
+        
     }
     
     @IBAction func next(sender: UIButton) {
