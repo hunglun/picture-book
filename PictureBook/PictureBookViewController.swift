@@ -19,7 +19,7 @@ class PictureBookViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var textField: UITextField!
     @IBOutlet var webView: UIWebView!
     @IBOutlet var toolbar: UIToolbar!
-
+    @IBOutlet var nextButton: UIButton!
 
     let textAttributes = [
         // black outline
@@ -52,14 +52,18 @@ class PictureBookViewController: UIViewController, UITextFieldDelegate {
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .Plain, target: self, action: "selectNextPage")
         }else {
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Start Over", style: .Plain, target: self, action: "startOver")
-            
+            nextButton.enabled = false
+
         }
 
     }
     
     func imageSearch (sender : NSObject) {
         if let sender = sender as? UIBarButtonItem where sender.title != nil {
-            let urlString = "https://www.google.com/search?q=\(sender.title!)"
+            // the presence of opening quotation mark causes url to be invalid
+            let title = sender.title?.stringByReplacingOccurrencesOfString("\"", withString: "")
+            let urlString = "https://www.google.com/search?q=\(title!)"
+            print(urlString)
             if let url = NSURL (string: urlString) {
                 let requestObj = NSURLRequest(URL: url)
                 webView.loadRequest(requestObj)
@@ -82,9 +86,12 @@ class PictureBookViewController: UIViewController, UITextFieldDelegate {
             toolbar.items?.append(UIBarButtonItem(title: word, style: .Plain, target: self, action: "imageSearch:" ))
         }
     }
+    
+
 
     override func viewWillDisappear(animated: Bool) {
         unsubscribeToKeyboardNotifications()
+        toolbar.items?.removeAll()
     }
     
     override func didReceiveMemoryWarning() {
@@ -97,8 +104,7 @@ class PictureBookViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
-        print("Text Edit End")
-        if let text = textField.text {
+        if let text = textField.text?.stringByReplacingOccurrencesOfString(" ", withString: "+") {
             if let url = NSURL (string: "https://www.google.com.sg/search?q=\(text)") {
                 let requestObj = NSURLRequest(URL: url)
                 webView.loadRequest(requestObj)
@@ -139,6 +145,10 @@ class PictureBookViewController: UIViewController, UITextFieldDelegate {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
     }
     
-
+    @IBAction func next(sender: UIButton) {
+        selectNextPage()
+    }
+    
+    
 }
 

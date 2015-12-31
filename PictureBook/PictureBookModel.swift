@@ -11,7 +11,7 @@ import Foundation
 struct PictureStoryContent {
     var content : String
     init(content: String){
-        self.content=content
+        self.content=content.stringByReplacingOccurrencesOfString("\n", withString: " ")
     }
     func contentToListOfSublists () -> [[String]]{
         if content == "" {
@@ -24,8 +24,8 @@ struct PictureStoryContent {
         var count = 0
         for word in listsOfWords {
             count += word.characters.count
-            // restrict 30 letters per view.
-            if count < 30 {
+            // restrict 28 letters per view.
+            if count < 28 {
                 sublist.append(word)
                 
             }else {
