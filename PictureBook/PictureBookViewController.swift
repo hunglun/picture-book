@@ -7,11 +7,8 @@
 //
 
 import UIKit
- 
 
-
-
-//var pictureStoryContent = PictureStoryContent(content:"Once upon a time there was a mother Sow who lived in an old barn with her three little Pigs. When the little pigs were old enough to be on their own, she sent them out to seek their fortune.")
+let searchEngine = "https://www.bing.com/images/search?q="
 
 class PictureBookViewController: UIViewController, UITextFieldDelegate {
     var storyContentIndex : Int!
@@ -60,7 +57,7 @@ class PictureBookViewController: UIViewController, UITextFieldDelegate {
         if let sender = sender as? UIBarButtonItem where sender.title != nil {
             // the presence of opening quotation mark causes url to be invalid
             let title = sender.title?.stringByReplacingOccurrencesOfString("\"", withString: "")
-            let urlString = "https://www.google.com/search?q=\(title!)"
+            let urlString = "\(searchEngine)\(title!)"
             print(urlString)
             if let url = NSURL (string: urlString) {
                 let requestObj = NSURLRequest(URL: url)
@@ -103,7 +100,7 @@ class PictureBookViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldDidEndEditing(textField: UITextField) {
         if let text = textField.text?.stringByReplacingOccurrencesOfString(" ", withString: "+") {
-            if let url = NSURL (string: "https://www.google.com.sg/search?q=\(text)") {
+            if let url = NSURL (string: "\(searchEngine)\(text)") {
                 let requestObj = NSURLRequest(URL: url)
                 webView.loadRequest(requestObj)
             }
@@ -134,7 +131,13 @@ class PictureBookViewController: UIViewController, UITextFieldDelegate {
     }
     
     func deviceWillRotate(notification : NSNotification){
-        // Create bar button on toolbar
+
+        //TODO: known bug. This function gets called even when the entire screen has not rotated yet.
+        if UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation) {
+            print("Orientation changes to landscape")
+        } else {
+            print("Orientation changes to portrait")
+        }
         toolbar.items?.removeAll()
         for word in pictureStoryContent.contentToListOfSublists()[storyContentIndex] {
             toolbar.items?.append(UIBarButtonItem(title: word, style: .Plain, target: self, action: "imageSearch:" ))
