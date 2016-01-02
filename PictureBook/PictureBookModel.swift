@@ -16,7 +16,7 @@ struct PictureStoryContent {
         self.content=content.stringByReplacingOccurrencesOfString("\n", withString: " ")
     }
     func contentToListOfSublists () -> [[String]]{
-        let numberOfDisplayedLetters = UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation) ? 56 : 28
+        let numberOfDisplayedLetters = UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation) ? 80 : 40
         if content == "" {
             return []
         }

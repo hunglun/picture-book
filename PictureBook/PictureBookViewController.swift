@@ -81,21 +81,12 @@ class PictureBookViewController: UIViewController, UITextFieldDelegate, UICollec
         textField.textAlignment = .Center
         textField.clearButtonMode = .WhileEditing
     
-        //TODO: create collection view cell
-        // Create bar button on toolbar
-        /*
-        for word in pictureStoryContent.contentToListOfSublists()[storyContentIndex] {
-            toolbar.items?.append(UIBarButtonItem(title: word, style: .Plain, target: self, action: "imageSearch:" ))
-        }
-        */
     }
     
 
 
     override func viewWillDisappear(animated: Bool) {
         unsubscribeToKeyboardNotifications()
-        //TODO: remove collection cells
-        //        toolbar.items?.removeAll()
     }
     
     override func didReceiveMemoryWarning() {
@@ -147,14 +138,6 @@ class PictureBookViewController: UIViewController, UITextFieldDelegate, UICollec
         } else {
             print("Orientation changes to portrait")
         }
-        //TODO: remove collection view cells.
-        //toolbar.items?.removeAll()
-        //TODO: populate collection view
-        /*
-        for word in pictureStoryContent.contentToListOfSublists()[storyContentIndex] {
-            toolbar.items?.append(UIBarButtonItem(title: word, style: .Plain, target: self, action: "imageSearch:" ))
-        }
-        */
     }
     
     func subscribeToKeyboardNotifications() {
@@ -207,23 +190,20 @@ class PictureBookViewController: UIViewController, UITextFieldDelegate, UICollec
         
         cell.storyContentLabel.text = word
         cell.storyContentLabel.sizeToFit()
-    //    cell.sizeToFit()
         
-        print("fit label size")
+
         return cell
     }
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
 
         var word = pictureStoryContent.contentToListOfSublists()[storyContentIndex][indexPath.row] as NSString
-        word = "\(word)AA"
+        word = "\(word)A"
         let wordTextAttributes = [
             NSFontAttributeName : UIFont(name: "HelveticaNeue", size: 25)!,
         ]
         var size = word.sizeWithAttributes(wordTextAttributes)
         size.height = size.height * 1.3
-        
-        print("set cell size")
         return size
         
         
