@@ -15,6 +15,7 @@
 		FA0C83A01C340DB3001FD43F /* Roadmap.rtf in Resources */ = {isa = PBXBuildFile; fileRef = FA0C839F1C340DB3001FD43F /* Roadmap.rtf */; };
 		FA0C83A21C341B33001FD43F /* PictureBookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0C83A11C341B33001FD43F /* PictureBookModel.swift */; };
 		FA0EA57F1C34553C006BE7DA /* StoryInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0EA57E1C34553C006BE7DA /* StoryInputViewController.swift */; };
+		FA0EA5831C371779006BE7DA /* PictureBookCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0EA5821C371779006BE7DA /* PictureBookCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		FA0C839F1C340DB3001FD43F /* Roadmap.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Roadmap.rtf; sourceTree = "<group>"; };
 		FA0C83A11C341B33001FD43F /* PictureBookModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureBookModel.swift; sourceTree = "<group>"; };
 		FA0EA57E1C34553C006BE7DA /* StoryInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryInputViewController.swift; sourceTree = "<group>"; };
+		FA0EA5821C371779006BE7DA /* PictureBookCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureBookCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 			children = (
 				FA0C838D1C340921001FD43F /* AppDelegate.swift */,
 				FA0C838F1C340921001FD43F /* PictureBookViewController.swift */,
+				FA0EA5821C371779006BE7DA /* PictureBookCollectionViewCell.swift */,
 				FA0C83A11C341B33001FD43F /* PictureBookModel.swift */,
 				FA0C83911C340921001FD43F /* Main.storyboard */,
 				FA0EA57E1C34553C006BE7DA /* StoryInputViewController.swift */,
@@ -145,6 +148,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA0EA5831C371779006BE7DA /* PictureBookCollectionViewCell.swift in Sources */,
 				FA0C83A21C341B33001FD43F /* PictureBookModel.swift in Sources */,
 				FA0EA57F1C34553C006BE7DA /* StoryInputViewController.swift in Sources */,
 				FA0C83901C340921001FD43F /* PictureBookViewController.swift in Sources */,

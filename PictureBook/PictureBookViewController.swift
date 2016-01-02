@@ -10,22 +10,24 @@ import UIKit
 
 let searchEngine = "https://www.bing.com/images/search?q="
 
-class PictureBookViewController: UIViewController, UITextFieldDelegate {
+class PictureBookViewController: UIViewController, UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDataSource{
     var storyContentIndex : Int!
     var pictureStoryContent : PictureStoryContent!
     @IBOutlet var textField: UITextField!
     @IBOutlet var webView: UIWebView!
-    @IBOutlet var toolbar: UIToolbar!
     @IBOutlet var nextButton: UIButton!
+    @IBOutlet var flowLayout : UICollectionViewFlowLayout!
 
+    @IBOutlet var collectionView: UICollectionView!
     let textAttributes = [
         // black outline
         NSStrokeColorAttributeName : UIColor(white: 0, alpha: 1),
         NSForegroundColorAttributeName : UIColor(white: 0.5, alpha: 1),         // grey fill
-        NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+        NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 25)!,
         NSStrokeWidthAttributeName : -3
     ]
     
+
     func selectNextPage(){
         let nextController = self.storyboard!.instantiateViewControllerWithIdentifier("PictureBookViewController") as! PictureBookViewController
         nextController.pictureStoryContent = self.pictureStoryContent
@@ -40,7 +42,10 @@ class PictureBookViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        flowLayout.minimumInteritemSpacing = 0
 
+        
         if storyContentIndex == nil {
             storyContentIndex = 0
         }
@@ -70,23 +75,27 @@ class PictureBookViewController: UIViewController, UITextFieldDelegate {
         super.viewWillAppear(animated)
         subscribeToKeyboardNotifications()
        
-        
+
         textField.delegate = self
         textField.defaultTextAttributes = textAttributes
         textField.textAlignment = .Center
         textField.clearButtonMode = .WhileEditing
     
+        //TODO: create collection view cell
         // Create bar button on toolbar
+        /*
         for word in pictureStoryContent.contentToListOfSublists()[storyContentIndex] {
             toolbar.items?.append(UIBarButtonItem(title: word, style: .Plain, target: self, action: "imageSearch:" ))
         }
+        */
     }
     
 
 
     override func viewWillDisappear(animated: Bool) {
         unsubscribeToKeyboardNotifications()
-        toolbar.items?.removeAll()
+        //TODO: remove collection cells
+        //        toolbar.items?.removeAll()
     }
     
     override func didReceiveMemoryWarning() {
@@ -138,11 +147,14 @@ class PictureBookViewController: UIViewController, UITextFieldDelegate {
         } else {
             print("Orientation changes to portrait")
         }
-        toolbar.items?.removeAll()
+        //TODO: remove collection view cells.
+        //toolbar.items?.removeAll()
+        //TODO: populate collection view
+        /*
         for word in pictureStoryContent.contentToListOfSublists()[storyContentIndex] {
             toolbar.items?.append(UIBarButtonItem(title: word, style: .Plain, target: self, action: "imageSearch:" ))
         }
-
+        */
     }
     
     func subscribeToKeyboardNotifications() {
@@ -164,6 +176,58 @@ class PictureBookViewController: UIViewController, UITextFieldDelegate {
         selectNextPage()
     }
     
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! PictureBookCollectionViewCell
+        if let text = cell.storyContentLabel.text {
+            // the presence of opening quotation mark causes url to be invalid
+            let word = text.stringByReplacingOccurrencesOfString("\"", withString: "")
+            let urlString = "\(searchEngine)\(word)"
+            print(urlString)
+            if let url = NSURL (string: urlString) {
+                let requestObj = NSURLRequest(URL: url)
+                webView.loadRequest(requestObj)
+            }
+        }
+
+        
+    }
+    
+    func collectionView(tableView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+
+        return pictureStoryContent.contentToListOfSublists()[storyContentIndex].count
+    }
+
+
+    func collectionView(tableView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView?.dequeueReusableCellWithReuseIdentifier("PictureBookCollectionViewCell", forIndexPath: indexPath) as! PictureBookCollectionViewCell
+        
+        let word = pictureStoryContent.contentToListOfSublists()[storyContentIndex][indexPath.row]
+        
+        cell.storyContentLabel.text = word
+        cell.storyContentLabel.sizeToFit()
+    //    cell.sizeToFit()
+        
+        print("fit label size")
+        return cell
+    }
+
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+
+        var word = pictureStoryContent.contentToListOfSublists()[storyContentIndex][indexPath.row] as NSString
+        word = "\(word)AA"
+        let wordTextAttributes = [
+            NSFontAttributeName : UIFont(name: "HelveticaNeue", size: 25)!,
+        ]
+        var size = word.sizeWithAttributes(wordTextAttributes)
+        size.height = size.height * 1.3
+        
+        print("set cell size")
+        return size
+        
+        
+    }
     
 }
 
