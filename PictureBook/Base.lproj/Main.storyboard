@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--StoryInputView-->
@@ -78,16 +79,11 @@ So she set to work, and very soon finished off the cake.</string>
                                     <constraint firstAttribute="width" id="NUl-n2-xXG"/>
                                 </constraints>
                             </navigationBar>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k08-iJ-g6u">
-                                <rect key="frame" x="0.0" y="64" width="600" height="420"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
-                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
-                            </webView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vYG-T4-KQn">
-                                <rect key="frame" x="560" y="566" width="40" height="34"/>
+                                <rect key="frame" x="521" y="566" width="79" height="34"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="6BR-U0-XRx"/>
+                                    <constraint firstAttribute="width" constant="79" id="Ts4-k6-XCy"/>
                                 </constraints>
                                 <state key="normal" title="&gt;"/>
                                 <connections>
@@ -95,14 +91,15 @@ So she set to work, and very soon finished off the cake.</string>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Enter a word here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OHa-pK-0kQ">
-                                <rect key="frame" x="0.0" y="566" width="560" height="34"/>
+                                <rect key="frame" x="0.0" y="566" width="521" height="34"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textField>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dAh-Yp-N4T">
-                                <rect key="frame" x="0.0" y="482" width="600" height="84"/>
+                                <rect key="frame" x="8" y="366" width="592" height="200"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="84" id="hpU-nN-UIW"/>
+                                    <constraint firstAttribute="height" constant="200" id="oJQ-U7-qu5"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="DpT-sL-bcf">
                                     <size key="itemSize" width="438" height="30"/>
@@ -112,13 +109,13 @@ So she set to work, and very soon finished off the cake.</string>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PictureBookCollectionViewCell" id="jVu-Ci-NCm" customClass="PictureBookCollectionViewCell" customModule="PictureBook" customModuleProvider="target">
-                                        <rect key="frame" x="81" y="0.0" width="438" height="30"/>
+                                        <rect key="frame" x="77" y="0.0" width="438" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="438" height="30"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8WN-jV-8xK">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8WN-jV-8xK">
                                                     <rect key="frame" x="0.0" y="0.0" width="430" height="30"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
                                                     <color key="textColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -127,6 +124,11 @@ So she set to work, and very soon finished off the cake.</string>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="8WN-jV-8xK" firstAttribute="leading" secondItem="jVu-Ci-NCm" secondAttribute="leading" id="VoP-C6-oRK"/>
+                                            <constraint firstItem="8WN-jV-8xK" firstAttribute="trailing" secondItem="jVu-Ci-NCm" secondAttribute="trailingMargin" id="dmz-pd-IK4"/>
+                                            <constraint firstItem="8WN-jV-8xK" firstAttribute="top" secondItem="jVu-Ci-NCm" secondAttribute="top" id="gc9-nv-JNf"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="storyContentLabel" destination="8WN-jV-8xK" id="WYr-Lq-Ndd"/>
                                         </connections>
@@ -137,24 +139,29 @@ So she set to work, and very soon finished off the cake.</string>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="VCQ-vw-Z9U"/>
                                 </connections>
                             </collectionView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rTx-Wc-326">
+                                <rect key="frame" x="0.0" y="64" width="600" height="294"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="294" id="p76-tV-Weh"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="dAh-Yp-N4T" firstAttribute="leading" secondItem="k08-iJ-g6u" secondAttribute="leading" id="41M-ny-hH8"/>
-                            <constraint firstItem="vYG-T4-KQn" firstAttribute="top" secondItem="OHa-pK-0kQ" secondAttribute="top" id="5sf-TA-gn5"/>
-                            <constraint firstItem="dAh-Yp-N4T" firstAttribute="leading" secondItem="OHa-pK-0kQ" secondAttribute="leading" id="7ND-7Z-CS8"/>
-                            <constraint firstItem="dAh-Yp-N4T" firstAttribute="top" secondItem="k08-iJ-g6u" secondAttribute="bottom" constant="-2" id="Bxn-wh-cOW"/>
-                            <constraint firstAttribute="trailing" secondItem="vYG-T4-KQn" secondAttribute="trailing" id="EEB-P2-aQt"/>
-                            <constraint firstItem="k08-iJ-g6u" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="IqG-io-OWd"/>
+                            <constraint firstItem="vYG-T4-KQn" firstAttribute="trailing" secondItem="rTx-Wc-326" secondAttribute="trailing" id="GLr-Co-RYf"/>
+                            <constraint firstItem="OHa-pK-0kQ" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="MfV-sd-Ida"/>
                             <constraint firstItem="A8G-qR-988" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Mog-ER-d7w"/>
-                            <constraint firstItem="vYG-T4-KQn" firstAttribute="leading" secondItem="OHa-pK-0kQ" secondAttribute="trailing" id="YJe-CH-POh"/>
-                            <constraint firstItem="vYG-T4-KQn" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="Z5x-dQ-8qR"/>
-                            <constraint firstItem="dAh-Yp-N4T" firstAttribute="trailing" secondItem="k08-iJ-g6u" secondAttribute="trailing" id="ZJP-th-gKb"/>
+                            <constraint firstItem="rTx-Wc-326" firstAttribute="leading" secondItem="A8G-qR-988" secondAttribute="leading" id="PY1-CR-ryM"/>
                             <constraint firstItem="A8G-qR-988" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="ZfF-wM-wes"/>
-                            <constraint firstItem="vYG-T4-KQn" firstAttribute="trailing" secondItem="dAh-Yp-N4T" secondAttribute="trailing" id="ikR-ho-M9Z"/>
-                            <constraint firstItem="OHa-pK-0kQ" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="kkf-4X-LYx"/>
-                            <constraint firstItem="k08-iJ-g6u" firstAttribute="leading" secondItem="A8G-qR-988" secondAttribute="leading" id="lBA-Ko-7Me"/>
-                            <constraint firstItem="vYG-T4-KQn" firstAttribute="top" secondItem="dAh-Yp-N4T" secondAttribute="bottom" id="nQE-oj-dUj"/>
+                            <constraint firstItem="dAh-Yp-N4T" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-12" id="cSb-vX-8gl"/>
+                            <constraint firstItem="dAh-Yp-N4T" firstAttribute="top" secondItem="rTx-Wc-326" secondAttribute="bottom" constant="8" symbolic="YES" id="cjv-LQ-7pV"/>
+                            <constraint firstItem="OHa-pK-0kQ" firstAttribute="top" secondItem="vYG-T4-KQn" secondAttribute="top" id="evo-Ch-vIL"/>
+                            <constraint firstItem="vYG-T4-KQn" firstAttribute="trailing" secondItem="dAh-Yp-N4T" secondAttribute="trailing" id="l0l-yG-0QA"/>
+                            <constraint firstItem="vYG-T4-KQn" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="oA9-SH-abr"/>
+                            <constraint firstItem="vYG-T4-KQn" firstAttribute="leading" secondItem="OHa-pK-0kQ" secondAttribute="trailing" id="qXj-6G-WdO"/>
+                            <constraint firstItem="rTx-Wc-326" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="re1-Cj-3dr"/>
+                            <constraint firstAttribute="trailing" secondItem="rTx-Wc-326" secondAttribute="trailing" id="xGB-ur-QKC"/>
+                            <constraint firstItem="OHa-pK-0kQ" firstAttribute="leading" secondItem="rTx-Wc-326" secondAttribute="leading" id="yXT-kV-epB"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Picture Book" id="ahG-HW-5yz">
@@ -163,9 +170,9 @@ So she set to work, and very soon finished off the cake.</string>
                     <connections>
                         <outlet property="collectionView" destination="dAh-Yp-N4T" id="hUR-7A-QtL"/>
                         <outlet property="flowLayout" destination="DpT-sL-bcf" id="TGg-uw-Unl"/>
+                        <outlet property="imageView" destination="rTx-Wc-326" id="YkQ-6U-dCX"/>
                         <outlet property="nextButton" destination="vYG-T4-KQn" id="V3k-7X-JoJ"/>
                         <outlet property="textField" destination="OHa-pK-0kQ" id="neN-c9-GXL"/>
-                        <outlet property="webView" destination="k08-iJ-g6u" id="vIv-DP-BfJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

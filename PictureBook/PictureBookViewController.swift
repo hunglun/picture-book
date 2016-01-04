@@ -8,13 +8,49 @@
 
 import UIKit
 
-let searchEngine = "https://www.bing.com/images/search?q="
+
+
+let baseURL = "https://api.flickr.com/services/rest/"
+
+var urlParameterDict = [
+    "method"  :"flickr.photos.search",
+    "api_key" : "8ba389c3eed8a5d6329c57c0f20ef23b",
+    "text": "baby+asian+elephant",
+    "format": "json",
+    "nojsoncallback" : "1",
+    "extras":"url_m"
+]
+
+/* Helper function: Given a dictionary of parameters, convert to a string for a url */
+func escapedParameters(parameters: [String : AnyObject]) -> String {
+    
+    var urlVars = [String]()
+    
+    for (key, value) in parameters {
+        
+        /* Make sure that it is a string value */
+        let stringValue = "\(value)"
+        
+        /* Escape it */
+        let escapedValue = stringValue.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+        
+        /* Append it */
+        urlVars += [key + "=" + "\(escapedValue!)"]
+        
+    }
+    
+    return (!urlVars.isEmpty ? "?" : "") + urlVars.joinWithSeparator("&")
+}
+
+func createURLString(baseURL : String, parameters : [String : String]) -> String{
+    return baseURL + escapedParameters(parameters)
+}
 
 class PictureBookViewController: UIViewController, UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDataSource{
     var storyContentIndex : Int!
     var pictureStoryContent : PictureStoryContent!
     @IBOutlet var textField: UITextField!
-    @IBOutlet var webView: UIWebView!
+    @IBOutlet var imageView: UIImageView!
     @IBOutlet var nextButton: UIButton!
     @IBOutlet var flowLayout : UICollectionViewFlowLayout!
 
@@ -27,6 +63,53 @@ class PictureBookViewController: UIViewController, UITextFieldDelegate, UICollec
         NSStrokeWidthAttributeName : -3
     ]
     
+    func loadImage(text : String) {
+        
+        // create URL
+        let escapedPhrase = text.componentsSeparatedByString(" ").joinWithSeparator("+")
+        urlParameterDict["text"] = escapedPhrase
+        let urlString = createURLString(baseURL, parameters: urlParameterDict)
+        print("URL String: \(urlString)\n")
+        let urlRequest = NSURLRequest(URL: NSURL(string: urlString)!)
+        // create session
+        let session = NSURLSession.sharedSession()
+        // define completion handler
+        let task = session.dataTaskWithRequest(urlRequest){ (data,response,error) in
+            if error == nil {
+                //                print("Data: \(data)")
+                do {
+                    if let parsedResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as? NSDictionary {
+                        if let photos = parsedResult["photos"]?["photo"] as? NSArray  {
+                            if photos.count == 0 {
+                                self.imageView.image = nil
+                            }else {
+                                let randomPhotoIndex = Int(arc4random_uniform(UInt32(photos.count)))
+                                let imageURL = photos[randomPhotoIndex]["url_m"]
+                                print(imageURL)
+                                dispatch_async( dispatch_get_main_queue()){
+                                    
+                                    if let imageURLString = photos[randomPhotoIndex]["url_m"] as? String ,
+                                        imageURL = NSURL(string:imageURLString),
+                                        data = NSData(contentsOfURL: imageURL) {
+                                            self.imageView.image = UIImage(data: data)
+                                    }
+                                }
+                                
+                                
+                            }
+                        }
+                    }
+                }catch{
+                    print("data is not json")
+                }
+                
+            }else{
+                print("error:\(error)")
+            }
+        }
+        // resume task
+        task.resume()
+    }
 
     func selectNextPage(){
         let nextController = self.storyboard!.instantiateViewControllerWithIdentifier("PictureBookViewController") as! PictureBookViewController
@@ -61,12 +144,8 @@ class PictureBookViewController: UIViewController, UITextFieldDelegate, UICollec
     func imageSearch (sender : NSObject) {
         if let sender = sender as? UIBarButtonItem where sender.title != nil {
             // the presence of opening quotation mark causes url to be invalid
-            let title = sender.title?.stringByReplacingOccurrencesOfString("\"", withString: "")
-            let urlString = "\(searchEngine)\(title!)"
-            print(urlString)
-            if let url = NSURL (string: urlString) {
-                let requestObj = NSURLRequest(URL: url)
-                webView.loadRequest(requestObj)
+            if let text = sender.title?.stringByReplacingOccurrencesOfString("\"", withString: "") {
+                loadImage(text)
             }
         }
     }
@@ -74,9 +153,12 @@ class PictureBookViewController: UIViewController, UITextFieldDelegate, UICollec
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         subscribeToKeyboardNotifications()
-       
-
-        textField.delegate = self
+    // It is distracting to show random image at the start of each page.
+/*        let words = pictureStoryContent.contentToListOfSublists()[storyContentIndex]
+        if words.count > 0 {
+            loadImage(words[Int(arc4random_uniform(UInt32(words.count)))])
+        }
+  */      textField.delegate = self
         textField.defaultTextAttributes = textAttributes
         textField.textAlignment = .Center
         textField.clearButtonMode = .WhileEditing
@@ -100,10 +182,7 @@ class PictureBookViewController: UIViewController, UITextFieldDelegate, UICollec
     
     func textFieldDidEndEditing(textField: UITextField) {
         if let text = textField.text?.stringByReplacingOccurrencesOfString(" ", withString: "+") {
-            if let url = NSURL (string: "\(searchEngine)\(text)") {
-                let requestObj = NSURLRequest(URL: url)
-                webView.loadRequest(requestObj)
-            }
+            loadImage(text)
         }
     }
 
@@ -166,12 +245,8 @@ class PictureBookViewController: UIViewController, UITextFieldDelegate, UICollec
         if let text = cell.storyContentLabel.text {
             // the presence of opening quotation mark causes url to be invalid
             let word = text.stringByReplacingOccurrencesOfString("\"", withString: "")
-            let urlString = "\(searchEngine)\(word)"
-            print(urlString)
-            if let url = NSURL (string: urlString) {
-                let requestObj = NSURLRequest(URL: url)
-                webView.loadRequest(requestObj)
-            }
+            loadImage(word)
+            
         }
 
         
